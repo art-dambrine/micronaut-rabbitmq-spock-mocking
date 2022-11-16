@@ -1,0 +1,24 @@
+micronaut:
+  application:
+    name: simpleConnect
+  metrics:
+    enabled: true
+  security:
+    authentication: bearer
+#    token:
+#      jwt:
+#        signatures:
+#          secret:
+#            generator:
+#              secret: ${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}
+netty:
+  default:
+    allocator:
+      max-order: 3
+console:
+  enabled: true
+  addresses:
+  - /127.0.0.1
+  - /0:0:0:0:0:0:0:1
+  header-name: X-Console-Verify
+  header-value: a330f395-7090-4bd9-b3af-e6079766e486

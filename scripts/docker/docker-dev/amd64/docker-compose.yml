@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  app:
+    container_name: simple-connect
+    build:
+      context: ""
+      dockerfile: app/Dockerfile
+    volumes:
+      - ../../../../:/simple-connect
+      - ${HOME}/.m2:/home/micronaut/.m2
+    environment:
+      - TERM=xterm-color
+      - DEPLOYMENT=${DEPLOYMENT}
+
+    ports:
+      - "18080:8080"
+      - "5005:5005"
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"

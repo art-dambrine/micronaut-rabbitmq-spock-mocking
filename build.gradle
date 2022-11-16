@@ -1,0 +1,63 @@
+plugins {
+    id("groovy")
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("io.micronaut.application") version "3.6.3"
+    id("org.asciidoctor.jvm.convert") version "3.3.2"
+}
+version = "0.1"
+group = "com.company.microproject.sample"
+
+apply from: "gradle/asciidoc.gradle"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-management")
+    implementation("io.micronaut.groovy:micronaut-runtime-groovy")
+    implementation("io.micronaut.micrometer:micronaut-micrometer-core")
+    implementation("io.micronaut.rabbitmq:micronaut-rabbitmq")
+    implementation("io.micronaut.security:micronaut-security")
+    implementation("io.micronaut.security:micronaut-security-jwt")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("jakarta.annotation:jakarta.annotation-api")
+    compileOnly("io.micronaut:micronaut-http-validation")
+    compileOnly("io.micronaut.micrometer:micronaut-micrometer-annotation")
+    compileOnly("io.micronaut.security:micronaut-security-annotations")
+    compileOnly("io.micronaut.serde:micronaut-serde-processor")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    developmentOnly("com.agorapulse:micronaut-console:2.0.1-micronaut-3.0")
+    implementation("io.micronaut:micronaut-validation")
+
+    implementation "io.vavr:vavr:${vavr}"
+}
+
+
+application {
+    mainClass.set("com.company.microproject.sample.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("17")
+    targetCompatibility = JavaVersion.toVersion("17")
+}
+
+graalvmNative.toolchainDetection = false
+micronaut {
+    runtime("netty")
+    testRuntime("spock2")
+    processing {
+        incremental(true)
+        annotations("com.company.microproject.sample.*")
+    }
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+
+

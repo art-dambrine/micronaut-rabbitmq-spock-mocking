@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.company.microproject.sample
+testFramework: spock
+sourceLanguage: groovy
+buildTool: gradle
+features: [agorapulse-micronaut-console, annotation-api, app-name, asciidoctor, gradle, groovy, groovy-application, http-client, logback, management, micrometer, micrometer-annotation, micronaut-build, netty-server, rabbitmq, readme, security, security-annotations, security-jwt, serialization-jackson, shade, spock, test-resources, yaml]
