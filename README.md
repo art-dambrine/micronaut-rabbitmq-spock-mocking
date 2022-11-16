@@ -17,7 +17,7 @@ Test result failure:
 ```
 Too few invocations for:
 
-1 * simpleService.handleSimpleRequest(_ as SampleRequest) >> { SampleRequest request ->
+1 * mockSimpleService.handleSimpleRequest(_ as SampleRequest) >> { SampleRequest request ->
             assert request.message != null
         }   (0 invocations)
 

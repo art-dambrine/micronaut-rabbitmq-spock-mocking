@@ -22,11 +22,15 @@ class SampleRequestConsumerSpec extends Specification {
     @Inject
     SimpleService simpleService
 
-    @MockBean(SimpleService)
-    SimpleService simpleService() {
-        Mock(SimpleService)
+    SimpleService mockSimpleService = Mock(SimpleService.class)
+
+    def setup() {
+        sampleRequestConsumer.simpleService = mockSimpleService
     }
 
+    def cleanup() {
+        sampleRequestConsumer.simpleService = simpleService
+    }
 
     def "It receives a sampleRequest message in the simple.request queue"() {
         when:
@@ -35,7 +39,7 @@ class SampleRequestConsumerSpec extends Specification {
         then:
         sleep(100)
 
-        1 * simpleService.handleSimpleRequest(_ as SampleRequest) >> { SampleRequest request ->
+        1 * mockSimpleService.handleSimpleRequest(_ as SampleRequest) >> { SampleRequest request ->
             assert request.message != null
         }
     }
