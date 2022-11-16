@@ -30,7 +30,7 @@ class SampleRequestConsumerSpec extends Specification {
 
     def "It receives a sampleRequest message in the simple.request queue"() {
         when:
-        sampleRequestConsumer.receive([message: "Request1"])
+        externalWorkflowProducer.send(new SampleRequest(message: "Request1"))
 
         then:
         sleep(100)
