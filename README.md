@@ -13,7 +13,7 @@ export RABBITMQ_VIRTUALHOST=/
 ./gradlew check
 ```
 
-Test result failure:
+Test result failure: (now solved see: https://stackoverflow.com/questions/74463717/how-to-mock-a-service-with-spock-in-micronaut-when-testing-a-rabbit-consumer)
 ```
 Too few invocations for:
 
