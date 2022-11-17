@@ -34,11 +34,10 @@ class SampleRequestConsumerSpec extends Specification {
 
     def "It receives a sampleRequest message in the simple.request queue"() {
         when:
-        externalWorkflowProducer.send(new SampleRequest(message: "Request1"))
-
+        externalWorkflowProducer.send(new SampleRequest(message: "Request1"))     
+        sleep(50)
+        
         then:
-        sleep(100)
-
         1 * mockSimpleService.handleSimpleRequest(_ as SampleRequest) >> { SampleRequest request ->
             assert request.message != null
         }
